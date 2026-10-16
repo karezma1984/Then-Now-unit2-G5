@@ -1,0 +1,211 @@
+Create and Publish My Grade 5 English Interactive Website
+
+Act as an expert web developer and educational website designer. Create the complete working website directly in my GitHub repository. Do the work yourself; do not just explain how to create it or give me code to copy manually.
+
+1. Website information
+
+Display the following information clearly in the website header:
+
+* Teacher Name: Salem Rashid Al Harbi
+* School Name: Imam Al-Salt bin Al-Qasim Al-Kharousi School for Basic Education (Grades 5–8)
+* Grade: 5
+* Subject: English
+* Unit: Unit 2 – Then and Now
+* Curriculum: Oman English Curriculum
+
+2. Technical requirements
+
+1. Create a complete website using only one file named index.html.
+2. Put all HTML, CSS, and JavaScript inside index.html.
+3. Do not create additional files, folders, frameworks, or configuration files unless absolutely necessary for GitHub Pages.
+4. Do not use external libraries or services that require API keys.
+5. Make the website work on iPhones, tablets, laptops, and desktop computers.
+6. Use clear, well-organized code and check that all buttons and activities work.
+7. Work directly in the currently open GitHub repository and save the finished changes to the main branch, using the available repository editing and commit tools.
+8. Do not claim that changes have been saved, tested, or published unless those actions have actually succeeded.
+
+3. Website design
+
+Create an attractive, modern, colourful educational website suitable for Grade 5 students.
+
+Include:
+
+* A professional welcome page with the teacher’s and school’s names.
+* A clear Unit 2 title: Then and Now.
+* Easy navigation between learning sections.
+* Student-friendly instructions.
+* Colourful activity cards, icons, progress indicators, and score displays.
+* Responsive buttons and readable text.
+* A clean layout that works well on mobile screens.
+* A button to return to the top or home section.
+
+Use English throughout the website.
+
+4. Learning objectives
+
+Help students to:
+
+* Recognise and use vocabulary about technology in the past and present.
+* Identify and use the Past Simple tense.
+* Use could and couldn’t to talk about past abilities.
+* Read a short text and answer comprehension questions.
+* Develop listening comprehension.
+* Write a short report about technology and life in the past and present.
+* Compare life in the past with life today.
+
+5. Vocabulary section
+
+Include interactive practice using vocabulary related to the unit, such as:
+
+* computer
+* keyboard
+* mouse
+* tablet
+* email
+* letter
+* telephone
+* mobile phone
+* CD player
+* carry
+* call
+* study
+* post a letter
+* send an email
+* tell a story
+* hold a pen
+* win a race
+* make a sandwich
+* tie a shoelace
+
+Create multiple-choice questions, matching activities, and vocabulary challenges. Show immediate feedback and the student’s score.
+
+6. Grammar section: Past Simple
+
+Teach and practise:
+
+* Affirmative sentences in the Past Simple.
+* Negative sentences using didn’t.
+* Questions using Did you …?
+* Appropriate use of base verbs after did and didn’t.
+
+Include examples, multiple-choice questions, sentence completion, and correction exercises. Explain incorrect answers simply.
+
+7. Grammar section: Could and Couldn’t
+
+Teach students how to describe past abilities using could and couldn’t.
+
+Include:
+
+* Simple explanations and examples.
+* Multiple-choice questions.
+* Fill-in-the-blank exercises.
+* Sentence-building activities.
+* Immediate feedback.
+
+8. Reading comprehension
+
+Create an age-appropriate original reading passage about how people used technology in the past and how they use it today.
+
+Include:
+
+* A short passage.
+* Multiple-choice questions.
+* True-or-false questions.
+* Short-answer questions.
+* Automatic scoring for objective questions.
+
+Ensure the passage and questions are consistent with Grade 5 English and the theme “Then and Now.”
+
+9. Listening activity
+
+Create a listening activity that works without external audio files or paid services.
+
+Include a short listening script that students can reveal or read aloud with the teacher. If the browser supports text-to-speech, provide a working button to play the text aloud, with a text-based alternative if speech is unavailable.
+
+Add comprehension questions and immediate feedback.
+
+10. Writing activity
+
+Create a writing task in which students write a short report comparing technology or life in the past and today.
+
+Include:
+
+* A clear writing prompt.
+* Helpful sentence starters.
+* A text area for students to type their answers.
+* A live word counter.
+* A simple checklist for capital letters, punctuation, grammar, and relevant vocabulary.
+* A working button to check the writing against the checklist.
+
+Do not claim that automated writing feedback is a perfect assessment of grammar or writing quality.
+
+11. Final interactive quiz
+
+Create a final quiz with at least 10 questions covering:
+
+* Vocabulary.
+* Past Simple.
+* Could and couldn’t.
+* Reading comprehension.
+* Listening comprehension.
+
+Requirements:
+
+* Randomise question order where practical.
+* Provide answer choices.
+* Check answers when the student submits the quiz.
+* Display the total score and percentage.
+* Show correct answers and explanations after submission.
+* Provide a working “Try Again” button.
+* Do not reveal the correct answer before the student answers.
+
+12. Student progress and feedback
+
+Include:
+
+* Scores for individual activities.
+* Clear correct and incorrect feedback.
+* A progress summary.
+* Encouraging messages for students.
+* A final result screen.
+
+Keep the website simple and reliable. Do not require student accounts or collect personal information.
+
+13. Teacher and school branding
+
+Display the following text prominently and correctly:
+
+Teacher: Salem Rashid Al Harbi
+
+School: Imam Al-Salt bin Al-Qasim Al-Kharousi School for Basic Education (Grades 5–8)
+
+Add a footer containing the teacher’s name, school name, Grade 5 English, and Unit 2 – Then and Now.
+
+14. Testing and quality checks
+
+Before finishing:
+
+* Check that index.html exists in the repository root.
+* Check for JavaScript syntax errors.
+* Check that navigation works.
+* Check every quiz and activity button.
+* Check that answers are scored correctly.
+* Check the writing word counter.
+* Check mobile responsiveness.
+* Make sure the website does not depend on missing files.
+* Fix any errors you discover.
+
+15. Save and publish with GitHub Pages
+
+After creating and checking the website:
+
+1. Save the complete implementation in index.html.
+2. Commit the changes to the repository’s main branch using the available tools.
+3. If GitHub Pages can be enabled through the available tools, configure it to publish from the main branch and the root folder /.
+4. If you cannot enable GitHub Pages yourself, give me the exact steps to enable it in Settings → Pages → Build and deployment → Deploy from a branch → main → /(root) → Save.
+5. Provide the actual published website URL only after verifying the repository owner, repository name, and deployment status.
+6. If an error occurs, diagnose it and fix it rather than pretending the task is complete.
+
+Final instruction
+
+Start working on the repository now. Create the complete website yourself in index.html, test it, and save the changes. Do not stop after writing a plan. Do not create unnecessary files. If you need information that is genuinely unavailable, ask only for that specific information.
