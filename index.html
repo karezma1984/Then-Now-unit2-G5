@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Then and Now — Unit 2 — Grade 5 English</title>
+  <style>
+    :root{--brand:#0d6efd;--accent:#ff8c42;--muted:#6b7280;--card:#fff;--bg:#f6f8fb}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#0b1220;background:var(--bg)}
+    .container{max-width:1000px;margin:18px auto;padding:16px}
+    header{display:flex;gap:12px;align-items:center;justify-content:space-between}
+    .brand{display:flex;flex-direction:column}
+    h1{font-size:1.6rem;margin:0;color:var(--brand)}
+    .meta{font-size:0.95rem;color:var(--muted)}
+    nav{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+    .btn{background:var(--card);border:1px solid #e6e9ef;padding:8px 12px;border-radius:8px;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--brand),#0b5ed7);color:#fff;border:none}
+    main{margin-top:18px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 1px 2px rgba(10,10,10,0.04)}
+    .card h3{margin:0 0 8px 0}
+    footer{margin-top:22px;padding:12px;text-align:center;color:var(--muted);font-size:0.9rem}
+    .hidden{display:none}
+    .center{text-align:center}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    label{display:block;font-size:0.9rem;margin-bottom:6px}
+    select,input[type=text],textarea{width:100%;padding:8px;border-radius:8px;border:1px solid #e6e9ef}
+    textarea{min-height:120px}
+    .small{font-size:0.85rem;color:var(--muted)}
+    .score{font-weight:700;color:var(--accent)}
+    .progress{height:10px;background:#e9eef8;border-radius:6px;overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#ffb47a);width:0%}
+    @media (max-width:600px){h1{font-size:1.2rem}}
+    .question{margin-bottom:12px}
+    .options{display:flex;flex-direction:column;gap:8px}
+    .option{padding:8px;border-radius:8px;border:1px solid #e6e9ef;cursor:pointer}
+    .option.selected{background:#e9f2ff;border-color:var(--brand)}
+    .correct{background:#e6ffed;border-color:#2ea44f}
+    .wrong{background:#ffecec;border-color:#d73a49}
+    .toplink{position:fixed;right:16px;bottom:16px;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:var(--brand);color:#fff;border:none;box-shadow:0 4px 12px rgba(11,94,215,0.3)}
+    .results{padding:12px;border-radius:10px;background:#fff}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>Then and Now — Unit 2</h1>
+        <div class="meta">Teacher: Salem Rashid Al Harbi &middot; Imam Al-Salt bin Al-Qasim Al-Kharousi School for Basic Education (Grades 5–8)</div>
+        <div class="meta">Grade 5 — English — Oman English Curriculum</div>
+      </div>
+      <div class="controls">
+        <button class="btn" id="homeBtn">Home</button>
+        <button class="btn" id="progressBtn">Progress</button>
+        <button class="btn primary" id="startQuizBtn">Final Quiz</button>
+      </div>
+    </header>
+
+    <nav>
+      <button class="btn" data-target="vocab">Vocabulary</button>
+      <button class="btn" data-target="grammarPast">Grammar: Past Simple</button>
+      <button class="btn" data-target="grammarCould">Grammar: Could / Couldn't</button>
+      <button class="btn" data-target="reading">Reading</button>
+      <button class="btn" data-target="listening">Listening</button>
+      <button class="btn" data-target="writing">Writing</button>
+    </nav>
+
+    <main id="main">
+      <section id="home" class="card">
+        <h2>Welcome, Students!</h2>
+        <p>Welcome to Unit 2: Then and Now. In this unit we will learn vocabulary about technology, practise the Past Simple and the modal <strong>could / couldn't</strong>, read a short passage, practise listening, and write a short report.</p>
+        <p class="small">Use the navigation above to go to each activity. Your scores will appear on the Progress screen.</p>
+        <div class="grid" style="margin-top:12px">
+          <div class="card">
+            <h3>Learning objectives</h3>
+            <ul>
+              <li>Recognise technology vocabulary from past and present</li>
+              <li>Use the Past Simple and could/couldn't</li>
+              <li>Read and answer questions</li>
+              <li>Listen and understand</li>
+              <li>Write a short report</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>How to use</h3>
+            <p>Complete activities and get immediate feedback. Finish the final quiz to see your overall score.</p>
+            <p class="small">Tip: Use the "Speak" buttons to hear texts (if your device supports it).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vocabulary -->
+      <section id="vocab" class="card hidden">
+        <h2>Vocabulary: Then and Now</h2>
+        <p>Practice words about technology in the past and present. Select the correct meaning or match words.</p>
+
+        <div id="vocabScore" class="small">Score: <span class="score" id="vocabScoreValue">0</span></div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Multiple-choice</h3>
+          <div id="vocabMC" class="question"></div>
+          <div style="margin-top:8px"><button class="btn" id="vocabNext">Next</button></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Matching (drag to match)</h3>
+          <p class="small">Drag the word onto its correct meaning.</p>
+          <div id="matching" style="display:flex;gap:12px;flex-wrap:wrap"></div>
+          <div style="margin-top:8px"><button class="btn" id="checkMatching">Check Matching</button></div>
+        </div>
+      </section>
+
+      <!-- Grammar Past Simple -->
+      <section id="grammarPast" class="card hidden">
+        <h2>Grammar: Past Simple</h2>
+        <p>Affirmative, negative with <em>didn't</em>, and questions with <em>Did you ...?</em></p>
+        <div class="card">
+          <h3>Quick explanation</h3>
+          <p>Use the past simple for completed actions in the past. Regular verbs add -ed (walk — walked). For questions and negatives use <strong>did</strong> and the base verb (Did you go? I didn't go.).</p>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Practice: choose the correct past simple</h3>
+          <div id="pastMC"></div>
+          <div style="margin-top:8px"><button class="btn" id="pastNext">Next</button></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Sentence correction</h3>
+          <p>Correct the sentence if it is wrong.</p>
+          <div id="pastCorrection"></div>
+          <div style="margin-top:8px"><button class="btn" id="checkCorrections">Check Answers</button></div>
+        </div>
+      </section>
+
+      <!-- Grammar Could -->
+      <section id="grammarCould" class="card hidden">
+        <h2>Grammar: Could and Couldn't</h2>
+        <div class="card">
+          <h3>Explanation</h3>
+          <p><strong>Could</strong> describes past ability (When I was small, I could climb trees). <strong>Couldn't</strong> is the negative (I couldn't swim when I was three).</p>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <h3>Practice</h3>
+          <div id="couldMC"></div>
+          <div style="margin-top:8px"><button class="btn" id="couldNext">Next</button></div>
+        </div>
+      </section>
+
+      <!-- Reading -->
+      <section id="reading" class="card hidden">
+        <h2>Reading: Then and Now</h2>
+        <div class="card">
+          <p id="readingPassage">Long ago, people used letters, CDs and landline telephones more than today. Families wrote letters to tell news, and children listened to stories on small CD players. Today, people send email, use mobile phones and tablets, and read stories online. Schools now use computers and tablets to help learning. While life was slower in the past, today we can communicate quickly and learn with devices.</p>
+          <div style="margin-top:8px"><button class="btn" id="speakReading">Speak</button></div>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h3>Comprehension</h3>
+          <div id="readingQ"></div>
+          <div style="margin-top:8px"><button class="btn" id="readingCheck">Check</button></div>
+        </div>
+      </section>
+
+      <!-- Listening -->
+      <section id="listening" class="card hidden">
+        <h2>Listening</h2>
+        <div class="card">
+          <h3>Short script</h3>
+          <p id="listeningScript">When my grandmother was young, she used a letter to tell her friend about a birthday. She wrote carefully and waited for the post. Now we send messages and talk on a mobile phone instead. Technology changed how we talk to friends.</p>
+          <div style="margin-top:8px" class="controls"><button class="btn primary" id="playListen">Play (Text-to-Speech)</button><button class="btn" id="revealScript">Reveal Script</button></div>
+        </div>
+        <div class="card" style="margin-top:12px">
+          <h3>Questions</h3>
+          <div id="listeningQ"></div>
+          <div style="margin-top:8px"><button class="btn" id="listeningCheck">Check</button></div>
+        </div>
+      </section>
+
+      <!-- Writing -->
+      <section id="writing" class="card hidden">
+        <h2>Writing: Short Report</h2>
+        <div class="card">
+          <p>Write a short report (about 80–120 words) comparing technology in the past and today.</p>
+          <p class="small">Sentence starters: "In the past..., Today..., People used to..., Now people..."</p>
+          <label for="writingArea">Your report</label>
+          <textarea id="writingArea" placeholder="Write your report here..."></textarea>
+          <div style="display:flex;gap:8px;align-items:center;margin-top:8px"><div class="small">Words: <span id="wordCount">0</span></div><button class="btn" id="checkWriting">Check</button></div>
+          <div id="writingFeedback" style="margin-top:8px"></div>
+        </div>
+      </section>
+
+      <!-- Final Quiz -->
+      <section id="finalQuiz" class="card hidden">
+        <h2>Final Quiz</h2>
+        <p>Answer all questions and submit to see your final score.</p>
+        <div id="quizQuestions"></div>
+        <div style="margin-top:12px;display:flex;gap:8px"><button class="btn primary" id="submitQuiz">Submit Quiz</button><button class="btn" id="tryAgain">Try Again</button></div>
+        <div id="quizResults" style="margin-top:12px" class="hidden"></div>
+      </section>
+
+      <section id="progress" class="card hidden">
+        <h2>Progress</h2>
+        <div id="progressSummary"></div>
+      </section>
+
+    </main>
+
+    <footer>
+      Teacher: Salem Rashid Al Harbi &nbsp;|&nbsp; Imam Al-Salt bin Al-Qasim Al-Kharousi School for Basic Education (Grades 5–8) &nbsp;|&nbsp; Grade 5 English — Unit 2: Then and Now
+    </footer>
+
+    <button class="toplink" title="Home" id="toTop">↑</button>
+  </div>
+
+  <script>
+    // Single-file interactive site. No external resources.
+    const state = {
+      vocabScore: 0,
+      vocabIndex: 0,
+      pastIndex: 0,
+      couldIndex: 0,
+      quizAnswers: {},
+    };
+
+    // Vocabulary items
+    const vocabItems = [
+      {word:'computer',choices:['A machine for writing letters','A device for computing and using programs','A tool for cutting'],answer:1},
+      {word:'keyboard',choices:['A flat book','A set of keys to type','A place to sit'],answer:1},
+      {word:'mouse',choices:['A small animal','A computer device moved by hand','A button'],answer:1},
+      {word:'tablet',choices:['A small flat computer','A medicine','A paper sign'],answer:0},
+      {word:'email',choices:['A digital message','A paper letter','A phone call'],answer:0},
+      {word:'letter',choices:['A written message sent by post','An alphabet sign','A number'],answer:0},
+      {word:'telephone',choices:['A device to call people','A book','A type of music'],answer:0},
+      {word:'mobile phone',choices:['A phone you can move','A fixed phone','A computer'],answer:0},
+      {word:'CD player',choices:['A player for music CDs','A music sheet','A small radio'],answer:0}
+    ];
+
+    // Matching pairs
+    const matchingPairs = [
+      {word:'email',mean:'send a digital message'},
+      {word:'letter',mean:'send a paper message'},
+      {word:'keyboard',mean:'type with keys'},
+      {word:'CD player',mean:'listen to CDs'},
+      {word:'mobile phone',mean:'call and message on the move'}
+    ];
+
+    // Past simple practice
+    const pastItems = [
+      {q:'I (go) to school yesterday.',choices:['goed','went','goed'],answer:1,explain:'went is the correct past of go.'},
+      {q:'She (play) football last week.',choices:['played','play','plays'],answer:0,explain:'played is regular past.'},
+      {q:'They (not / like) the movie.',choices:["didn\'t liked","didn\'t like","don\'t like"],answer:1,explain:'Use didn\'t + base verb.'}
+    ];
+
+    // Could practice
+    const couldItems = [
+      {q:'When he was a child, he (could / can) climb high trees.',choices:['can','could'],answer:1},
+      {q:'She (couldn\'t / can\'t) swim when she was three.',choices:["can't","couldn't"],answer:1}
+    ];
+
+    // Reading questions
+    const readingQuestions = [
+      {q:'What did people use more in the past?','choices':['Email and tablets','Letters and CD players','Mobile phones and tablets'],answer:1},
+      {q:'Today, schools use ____ to help learning.',choices:['computers and tablets','only books','only letters'],answer:0}
+    ];
+
+    // Listening questions
+    const listeningQuestions = [
+      {q:'What did the grandmother use to tell her friend about a birthday?',choices:['A letter','A mobile phone','An email'],answer:0},
+      {q:'Now we send messages and talk on a ___.',choices:['mobile phone','CD player','typewriter'],answer:0}
+    ];
+
+    // Final quiz - at least 10 questions combined
+    const finalQuiz = [
+      {id:'q1',type:'mc',q:'What is a keyboard?',choices:['A tool for cutting','A set of keys to type','A fish'],answer:1,explain:'A keyboard has keys for typing.'},
+      {id:'q2',type:'mc',q:'Choose the past of go.',choices:['goed','went','goes'],answer:1,explain:'went is the past of go.'},
+      {id:'q3',type:'mc',q:'When someone could not do something, we say ___.',choices:["could","couldn't","can"],answer:1,explain:"couldn't means not able in the past."},
+      {id:'q4',type:'tf',q:'People used letters to send messages in the past.',choices:['True','False'],answer:0,explain:'True — letters were common.'},
+      {id:'q5',type:'mc',q:'Which is a device to listen to CDs?',choices:['CD player','Tablet','Keyboard'],answer:0,explain:'A CD player plays CDs.'},
+      {id:'q6',type:'mc',q:'Which sentence is correct?',choices:['Did you went to the park?','Did you go to the park?','You did go?'],answer:1,explain:'Use Did + base verb.'},
+      {id:'q7',type:'mc',q:'She couldn\'t ___ when she was two.',choices:['swim','swam','swimming'],answer:0,explain:'Use base verb after couldn\'t.'},
+      {id:'q8',type:'mc',q:'Today we send email, and in the past we sent ___.',choices:['letters','tablets','computers'],answer:0,explain:'Letters were common before email.'},
+      {id:'q9',type:'mc',q:'A tablet is...',choices:['A small flat computer','A paper note','A type of shoe'],answer:0,explain:'A tablet is a flat computing device.'},
+      {id:'q10',type:'mc',q:'Which is correct for negative past?',choices:["He didn't went","He didn't go","He didn't going"],answer:1,explain:'Use didn\'t + base verb.'}
+    ];
+
+    // Utility functions
+    function $(sel){return document.querySelector(sel)}
+    function $all(sel){return Array.from(document.querySelectorAll(sel))}
+
+    // Navigation
+    $all('nav .btn, header .btn, nav button').forEach(b=>b.addEventListener('click', ()=>{
+      const target = b.dataset.target || b.id.replace('Btn','')
+      if(target && document.getElementById(target)) showSection(target)
+    }))
+    $('#startQuizBtn').addEventListener('click', ()=>showSection('finalQuiz'))
+    $('#homeBtn').addEventListener('click', ()=>showSection('home'))
+    $('#progressBtn').addEventListener('click', ()=>showSection('progress'))
+    $('#toTop').addEventListener('click', ()=>{window.scrollTo({top:0,behavior:'smooth'})})
+
+    function showSection(id){
+      $all('main > section').forEach(s=>s.classList.add('hidden'))
+      const el = document.getElementById(id)
+      if(el) el.classList.remove('hidden')
+      window.location.hash = id
+    }
+
+    // Vocabulary MC
+    function renderVocab(){
+      const item = vocabItems[state.vocabIndex % vocabItems.length]
+      const container = $('#vocabMC')
+      container.innerHTML = ''
+      const q = document.createElement('div')
+      q.innerHTML = `<div class="question"><strong>${item.word}</strong></div>`
+      const opts = document.createElement('div')
+      opts.className='options'
+      item.choices.forEach((c,i)=>{
+        const o = document.createElement('div')
+        o.className='option'
+        o.textContent = c
+        o.addEventListener('click', ()=>{
+          opts.querySelectorAll('.option').forEach(x=>x.classList.remove('selected'))
+          o.classList.add('selected')
+          const correct = i===item.answer
+          if(correct){state.vocabScore+=1;$('#vocabScoreValue').textContent=state.vocabScore}
+          // feedback
+          o.classList.add(correct? 'correct' : 'wrong')
+        })
+        opts.appendChild(o)
+      })
+      container.appendChild(q)
+      container.appendChild(opts)
+    }
+    $('#vocabNext').addEventListener('click', ()=>{state.vocabIndex++;renderVocab()})
+    renderVocab()
+
+    // Matching simple implementation (click pairs)
+    function renderMatching(){
+      const left = matchingPairs.map(p=>({text:p.word,id:p.word})).sort(()=>Math.random()-0.5)
+      const right = matchingPairs.map(p=>({text:p.mean,id:p.word})).sort(()=>Math.random()-0.5)
+      const container = $('#matching')
+      container.innerHTML = ''
+      const colA = document.createElement('div')
+      const colB = document.createElement('div')
+      colA.style.flex='1'
+      colB.style.flex='1'
+      left.forEach(it=>{
+        const d = document.createElement('div'); d.className='option'; d.textContent=it.text; d.dataset.id=it.id; d.addEventListener('click', ()=>selectPair(d)); colA.appendChild(d)
+      })
+      right.forEach(it=>{
+        const d = document.createElement('div'); d.className='option'; d.textContent=it.text; d.dataset.id=it.id; d.addEventListener('click', ()=>selectPair(d)); colB.appendChild(d)
+      })
+      container.appendChild(colA); container.appendChild(colB)
+      container._sel = []
+    }
+    function selectPair(el){
+      const container = $('#matching')
+      if(!container._sel) container._sel=[]
+      el.classList.toggle('selected')
+      const selected = Array.from(container.querySelectorAll('.selected'))
+      if(selected.length===2){
+        // store pair
+        const a = selected[0], b = selected[1]
+        // mark
+        if(a.dataset.id===b.dataset.id){a.classList.add('correct');b.classList.add('correct')} else {a.classList.add('wrong');b.classList.add('wrong')}
+        selected.forEach(x=>x.classList.remove('selected'))
+      }
+    }
+    $('#checkMatching').addEventListener('click', ()=>{
+      // scoring approximate
+      const correct = $('#matching').querySelectorAll('.correct').length/2
+      alert('You matched '+correct+' pairs correctly.')
+    })
+    renderMatching()
+
+    // Past simple MC
+    function renderPast(){
+      const item = pastItems[state.pastIndex % pastItems.length]
+      const container = $('#pastMC'); container.innerHTML=''
+      const q = document.createElement('div'); q.className='question'; q.innerHTML = `<strong>${item.q.replace('(','').replace(')','')}</strong>`
+      const opts = document.createElement('div'); opts.className='options'
+      item.choices.forEach((c,i)=>{
+        const o = document.createElement('div'); o.className='option'; o.textContent=c
+        o.addEventListener('click', ()=>{opts.querySelectorAll('.option').forEach(x=>x.classList.remove('selected')); o.classList.add('selected');
+          if(i===item.answer){o.classList.add('correct'); alert('Correct! '+item.explain)} else {o.classList.add('wrong'); alert('Not correct. '+item.explain)}
+        })
+        opts.appendChild(o)
+      })
+      container.appendChild(q); container.appendChild(opts)
+    }
+    $('#pastNext').addEventListener('click', ()=>{state.pastIndex++;renderPast()})
+    renderPast()
+
+    // Past correction
+    function renderPastCorrection(){
+      const container = $('#pastCorrection'); container.innerHTML=''
+      pastItems.forEach((it,i)=>{
+        const row = document.createElement('div'); row.style.marginBottom='8px'
+        row.innerHTML = `<div class="small">${i+1}. ${it.q.replace('('+ (it.q.match(/\(.*\)/)||[''])[0]+')','')}</div><input type="text" data-i="${i}" placeholder="Type the correct sentence" />`
+        container.appendChild(row)
+      })
+    }
+    $('#checkCorrections').addEventListener('click', ()=>{
+      const inputs = Array.from($('#pastCorrection').querySelectorAll('input'))
+      let good=0
+      inputs.forEach(inp=>{
+        const i=+inp.dataset.i
+        const ans = pastItems[i].choices[pastItems[i].answer]
+        if(inp.value.toLowerCase().includes(ans.split(' ')[0])){good++}
+      })
+      alert('You corrected '+good+' sentences correctly.')
+    })
+    renderPastCorrection()
+
+    // Could practice
+    function renderCould(){
+      const item = couldItems[state.couldIndex % couldItems.length]
+      const container = $('#couldMC'); container.innerHTML=''
+      const q = document.createElement('div'); q.className='question'; q.innerHTML = `<strong>${item.q}</strong>`
+      const opts = document.createElement('div'); opts.className='options'
+      item.choices.forEach((c,i)=>{
+        const o=document.createElement('div'); o.className='option'; o.textContent=c
+        o.addEventListener('click', ()=>{opts.querySelectorAll('.option').forEach(x=>x.classList.remove('selected')); o.classList.add('selected'); if(i===item.answer){o.classList.add('correct'); alert('Correct!')} else {o.classList.add('wrong'); alert('Try again.')}})
+        opts.appendChild(o)
+      })
+      container.appendChild(q);container.appendChild(opts)
+    }
+    $('#couldNext').addEventListener('click', ()=>{state.couldIndex++;renderCould()})
+    renderCould()
+
+    // Reading
+    function renderReadingQ(){
+      const container = $('#readingQ'); container.innerHTML=''
+      readingQuestions.forEach((it,i)=>{
+        const q = document.createElement('div'); q.className='question'; q.innerHTML = `<div><strong>${i+1}. ${it.q}</strong></div>`
+        const opts = document.createElement('div'); opts.className='options'
+        it.choices.forEach((c,ci)=>{ const o=document.createElement('div'); o.className='option'; o.textContent=c; o.addEventListener('click', ()=>{opts.querySelectorAll('.option').forEach(x=>x.classList.remove('selected')); o.classList.add('selected'); o.dataset.correct = (ci===it.answer)}); opts.appendChild(o)})
+        q.appendChild(opts); container.appendChild(q)
+      })
+    }
+    $('#readingCheck').addEventListener('click', ()=>{
+      let correct=0; const opts = $('#readingQ').querySelectorAll('.option')
+      opts.forEach(o=>{ if(o.classList.contains('selected') && o.dataset.correct==='true') correct++ })
+      alert('Reading score: '+correct+'/'+readingQuestions.length)
+    })
+    $('#speakReading').addEventListener('click', ()=>speak($('#readingPassage').textContent))
+    renderReadingQ()
+
+    // Listening
+    function renderListeningQ(){
+      const container = $('#listeningQ'); container.innerHTML=''
+      listeningQuestions.forEach((it,i)=>{
+        const q = document.createElement('div'); q.className='question'; q.innerHTML = `<div><strong>${i+1}. ${it.q}</strong></div>`
+        const opts = document.createElement('div'); opts.className='options'
+        it.choices.forEach((c,ci)=>{ const o=document.createElement('div'); o.className='option'; o.textContent=c; o.addEventListener('click', ()=>{opts.querySelectorAll('.option').forEach(x=>x.classList.remove('selected')); o.classList.add('selected'); o.dataset.correct=(ci===it.answer)}); opts.appendChild(o)})
+        q.appendChild(opts); container.appendChild(q)
+      })
+    }
+    $('#playListen').addEventListener('click', ()=>speak($('#listeningScript').textContent))
+    $('#revealScript').addEventListener('click', ()=>alert($('#listeningScript').textContent))
+    $('#listeningCheck').addEventListener('click', ()=>{let correct=0; $('#listeningQ').querySelectorAll('.option').forEach(o=>{ if(o.classList.contains('selected') && o.dataset.correct==='true') correct++ }); alert('Listening score: '+correct+'/'+listeningQuestions.length) })
+    renderListeningQ()
+
+    // Writing
+    const area = $('#writingArea'), wc = $('#wordCount'), wfb = $('#writingFeedback')
+    area.addEventListener('input', ()=>{ const words = area.value.trim().split(/\s+/).filter(Boolean).length; wc.textContent=words })
+    $('#checkWriting').addEventListener('click', ()=>{
+      const text = area.value
+      const words = text.trim().split(/\s+/).filter(Boolean).length
+      const checklist = []
+      checklist.push({name:'Capital letters',ok:/[A-Z]/.test(text)})
+      checklist.push({name:'Punctuation (.,?)',ok(/[\.\,\?\!]/.test(text))})
+      checklist.push({name:'Past or comparison words (used, used to, today, in the past)',ok:/(used to|today|in the past|used)/i.test(text)})
+      checklist.push({name:'Relevant vocabulary',ok:/(computer|phone|email|letter|tablet|CD)/i.test(text)})
+      let html = `<div class="results"><strong>Words:</strong> ${words}<ul>`
+      checklist.forEach(c=>{ html += `<li>${c.name}: ${c.ok? '✓' : '✗'}</li>` })
+      html += `</ul><p class="small">This is a simple checklist and not a full grammar check.</p></div>`
+      wfb.innerHTML = html
+    })
+
+    // Final quiz render
+    function renderFinalQuiz(){
+      const container = $('#quizQuestions'); container.innerHTML=''
+      // shuffle
+      const questions = finalQuiz.slice().sort(()=>Math.random()-0.5)
+      questions.forEach((it,idx)=>{
+        const div = document.createElement('div'); div.className='card'; div.style.marginBottom='8px'
+        div.innerHTML = `<div class="question"><strong>${idx+1}. ${it.q}</strong></div>`
+        const opts = document.createElement('div'); opts.className='options'
+        it.choices.forEach((c,ci)=>{ const o=document.createElement('div'); o.className='option'; o.textContent=c; o.addEventListener('click', ()=>{ opts.querySelectorAll('.option').forEach(x=>x.classList.remove('selected')); o.classList.add('selected'); div.dataset.answer = ci; div.dataset.qid = it.id }); opts.appendChild(o) })
+        container.appendChild(div)
+      })
+    }
+    $('#submitQuiz').addEventListener('click', ()=>{
+      const cards = $('#quizQuestions').children
+      let score=0; const total=cards.length; const details=[]
+      Array.from(cards).forEach((c, i)=>{
+        const q = finalQuiz.find(x=>x.id===c.dataset.qid) || finalQuiz[i]
+        const sel = +c.dataset.answer
+        const correct = sel===q.answer
+        if(correct) score++
+        details.push({q:q.q,correct,selected:sel,answer:q.answer,explain:q.explain})
+      })
+      const percent = Math.round((score/total)*100)
+      $('#quizResults').classList.remove('hidden')
+      $('#quizResults').innerHTML = `<div class="results"><h3>Your score: ${score}/${total} (${percent}%)</h3><div>${details.map((d,idx)=>`<div style="margin-bottom:6px"><strong>${idx+1}.</strong> ${d.q}<br>Answer: <em>${finalQuiz[idx].choices[d.answer]}</em><br>${d.correct? '<span style="color:green">Correct</span>': '<span style="color:crimson">Wrong</span> — '+d.explain}</div>`).join('')}</div></div>`
+      // save progress
+      saveProgress({final:{score,percent}})
+    })
+    $('#tryAgain').addEventListener('click', ()=>{renderFinalQuiz(); $('#quizResults').classList.add('hidden')})
+    renderFinalQuiz()
+
+    // Progress
+    function saveProgress(obj){
+      const data = JSON.parse(localStorage.getItem('unit2-progress')||'{}')
+      const now = new Date().toISOString()
+      localStorage.setItem('unit2-progress', JSON.stringify(Object.assign({},data,obj,{updated:now})))
+      renderProgress()
+    }
+    function renderProgress(){
+      const container = $('#progressSummary'); const data = JSON.parse(localStorage.getItem('unit2-progress')||'{}')
+      container.innerHTML = `<div class="card"><p class="small">Last saved: ${data.updated||'Not yet'}</p><pre>${JSON.stringify(data,null,2)}</pre></div>`
+    }
+    renderProgress()
+
+    // Speak function using Web Speech API
+    function speak(text){ if('speechSynthesis' in window){ const ut = new SpeechSynthesisUtterance(text); ut.lang='en-US'; speechSynthesis.cancel(); speechSynthesis.speak(ut)} else { alert('Text-to-speech is not supported on this device.') } }
+
+    // small helpers used earlier
+    function ok(v){return!!v}
+
+    // Initial hash handling
+    if(location.hash) showSection(location.hash.replace('#',''))
+
+    // Basic checks: log to console any JS errors
+    window.addEventListener('error', e=>{console.error('Site error:', e.message)})
+
+  </script>
+</body>
+</html>
